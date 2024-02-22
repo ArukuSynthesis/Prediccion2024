@@ -1,3 +1,7 @@
+# Instalar modulo pymongo
+st.write("Instalando modulo de pymongo...")
+st.write(st.run_script("pip install pymongo"))
+
 from pymongo import MongoClient
 import pandas as pd
 import streamlit as st
@@ -29,4 +33,3 @@ if collection:
     #Mostrar los datos
     st.write("Mostrando datos de la colección: ", collection)
     st.dataframe(df)
-    
