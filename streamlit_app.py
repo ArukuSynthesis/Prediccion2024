@@ -1,6 +1,18 @@
 from pymongo import MongoClient
 import pandas as pd
 import streamlit as st
+import requests
+
+def get_external_ip():
+    response = requests.get("https://api64.ipify.org?format=json")
+    if response.status_code == 200:
+        data = response.json()
+        return data.get("ip")
+    else:
+        return "Unknown"
+
+external_ip = get_external_ip()
+st.write("External IP:", external_ip)
 
 #Conectar a MongoDB usando de database.py el método connection()
 
