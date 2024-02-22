@@ -27,12 +27,3 @@ datos = getData()
 st.write(datos)
 st.dataframe(pd.DataFrame(datos))
 
-#Vamos a guardar una nueva collection en la base de datos
-
-dfInventory = pd.read_csv("datos/inventory.csv")
-st.dataframe(dfInventory.head())
-
-inventoryCollection = dfInventory.to_dict(orient="records")
-st.write(inventoryCollection[0:3])
-insertData(inventoryCollection)
-

@@ -1,40 +1,32 @@
-import altair as alt
-import numpy as np
+from pymongo import MongoClient
 import pandas as pd
 import streamlit as st
 
-"""
-# Welcome to Streamlit!
+#Conectar a MongoDB usando de database.py el método connection()
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+@st.cache_resource()
+def connection():
+    return MongoClient('mongodb+srv://'+st.secrets["DB_USERNAME"]+':'+st.secrets["DB_PASSWORD"]+',@prediccion2024.q7xsfjw.mongodb.net/')
 
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
+conexion = connection()
 
-num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
-num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
+#Obtener datos de la base de datos
 
-indices = np.linspace(0, 1, num_points)
-theta = 2 * np.pi * num_turns * indices
-radius = indices
+@st.cache_data(hash_funcs={MongoClient: id})
+def load_data(collection):
+    data = list(db[collection].find())
+    return data
 
-x = radius * np.cos(theta)
-y = radius * np.sin(theta)
+#Crear una barra lateral para acceder a los datos
+st.sidebar.subheader("MongoDB:")
+collection = st.sidebar.selectbox("Selecciona una colección: ", db.list_collection_names())
 
-df = pd.DataFrame({
-    "x": x,
-    "y": y,
-    "idx": indices,
-    "rand": np.random.randn(num_points),
-})
+#Cargar la collección seleccionada
+if collection:
+    data = load_data(collection)
+    df = pd.DataFrame(data)
 
-st.altair_chart(alt.Chart(df, height=700, width=700)
-    .mark_point(filled=True)
-    .encode(
-        x=alt.X("x", axis=None),
-        y=alt.Y("y", axis=None),
-        color=alt.Color("idx", legend=None, scale=alt.Scale()),
-        size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
-    ))
+    #Mostrar los datos
+    st.write("Mostrando datos de la colección: ", collection)
+    st.dataframe(df)
+    
