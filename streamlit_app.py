@@ -23,6 +23,12 @@ if collection:
     data = load_data(collection)
     df = pd.DataFrame(data)
 
+    #Eliminar las columnas address y grades del dataframe si la colección es restaurants
+    if collection == "restaurants":
+        df.drop(columns=["address", "grades"], inplace=True)
+    else:
+        df.drop(columns=["geometry"], inplace=True)
+        
     #Mostrar los datos
     st.write("Mostrando datos de la colección: ", collection)
     st.dataframe(df)
