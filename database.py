@@ -7,7 +7,7 @@ st.title('Prueba de conexión a MongoDB')
 
 @st.cache_resource()
 def connection():
-    return MongoClient('mongodb+srv://'+st.secrets["DB_USERNAME"]+':'+st.secrets["DB_PASSWORD"]+',@prediccion2024.q7xsfjw.mongodb.net/')
+    return MongoClient('mongodb+srv://'+st.secrets["DB_USERNAME"]+':'+st.secrets["DB_PASSWORD"]+'@prediccion2024.q7xsfjw.mongodb.net/')
 
 conexion = connection()
 
