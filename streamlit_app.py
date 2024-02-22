@@ -18,7 +18,13 @@ def load_data(collection):
 st.sidebar.subheader("MongoDB:")
 collection = st.sidebar.selectbox("Selecciona una colección: ", db.list_collection_names())
 
-#Cargar la collección seleccionada
+#Cargar la colección seleccionada sin limpiaza de datos
+if collection:
+    data = load_data(collection)
+    st.write("Mostrando datos de la colección: ", collection)
+    st.write(data)
+
+#Cargar la colección seleccionada con limpieza de datos
 if collection:
     data = load_data(collection)
     df = pd.DataFrame(data)
