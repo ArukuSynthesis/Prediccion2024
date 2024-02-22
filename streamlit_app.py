@@ -4,7 +4,7 @@ from pymongo import MongoClient
 st.title('Prueba de conexión a MongoDB')
 
 def connection():
-    return MongoClient('mongodb+srv://alexhernandezcastro00:iXlxlLLhvBQykiBO@prediccion2024.q7xsfjw.mongodb.net/')
+    return MongoClient('mongodb+srv://',DB_USERNAME,':',DB_PASSWORD',@prediccion2024.q7xsfjw.mongodb.net/')
 
 conexion = connection()
 
