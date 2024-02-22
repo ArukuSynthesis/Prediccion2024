@@ -21,8 +21,10 @@ collection = st.sidebar.selectbox("Selecciona una colección: ", db.list_collect
 #Cargar la colección seleccionada sin limpiaza de datos
 if collection:
     data = load_data(collection)
-    st.write("Mostrando datos de la colección: ", collection)
-    st.write(data)
+    st.write("Mostrando datos de la colección sin limpieza: ", collection)
+    dataframe2 = pd.DataFrame(data)
+    st.dataframe(dataframe2)
+
 
 #Cargar la colección seleccionada con limpieza de datos
 if collection:
