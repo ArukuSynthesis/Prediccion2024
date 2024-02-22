@@ -17,7 +17,7 @@ st.write("External IP:", external_ip)
 #Conectar a MongoDB usando de database.py el método connection()
 
 client = MongoClient('mongodb+srv://'+st.secrets["DB_USERNAME"]+':'+st.secrets["DB_PASSWORD"]+',@prediccion2024.q7xsfjw.mongodb.net/')
-db = client["testDB"]
+db = client["sample_restaurants"]
 
 #Obtener datos de la base de datos
 @st.cache_data(hash_funcs={MongoClient: id})
