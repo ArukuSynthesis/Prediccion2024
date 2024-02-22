@@ -5,7 +5,7 @@ import requests
 
 #Conectar a MongoDB usando de database.py el método connection()
 
-client = MongoClient('mongodb+srv://'+st.secrets[DB_USERNAME]+':'+st.secrets[DB_PASSWORD]+'@prediccion2024.q7xsfjw.mongodb.net/?retryWrites=true&w=majority&appName=Prediccion2024')
+client = MongoClient('mongodb+srv://'+st.secrets["DB_USERNAME"]+':'+st.secrets["DB_PASSWORD"]+'@prediccion2024.q7xsfjw.mongodb.net/?retryWrites=true&w=majority&appName=Prediccion2024')
 db = client["sample_restaurants"]
 
 #Obtener datos de la base de datos
