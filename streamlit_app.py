@@ -27,7 +27,7 @@ if collection:
     if collection == "restaurants":
         df.drop(columns=["_id", "address", "grades"], inplace=True)
     else:
-        df.drop(columns=["geometry"], inplace=True)
+        df.drop(columns=["_id", "geometry"], inplace=True)
 
     #Mostrar los datos
     st.write("Mostrando datos de la colección: ", collection)
